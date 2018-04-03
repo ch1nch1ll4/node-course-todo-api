@@ -33,7 +33,7 @@ describe('POST /todos', () => {
       .expect((res) => { //custom expect assertion
         expect(res.body.text).toBe(text);
       })
-      .end((err, res) => { //callback function in .end
+      .end((err, res) => { //callback function in .end because of async code
         if (err) {
           return done(err); //return to stop function execution
         }
@@ -70,7 +70,7 @@ describe('GET /todos', () => {
   it('should get all todos', (done) => {
     request(app)
       .get('/todos')
-      
+
       .expect(200)
       .expect((res) => {
         expect(res.body.todos.length).toBe(2);
